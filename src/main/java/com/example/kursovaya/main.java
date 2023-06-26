@@ -27,7 +27,7 @@ public class main {
                 System.out.println("identification_number = \"," + identification_number + " \"," );
                 System.out.println("address = \" " + address + " \"" );
                 System.out.println("phone_number = \" " + phone_number + ".");
-                System.out.println("Выведена вся информация!");
+                System.out.println("Выведена вся информация! fu");
             }
             result.close();
             statement.close();
