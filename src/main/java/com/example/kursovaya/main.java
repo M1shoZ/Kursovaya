@@ -20,14 +20,10 @@ public class main {
                 String address = result.getString("address" );
                 String phone_number = result.getString("phone_number" );
 
+                System.out.println("Owner: " + "id = " + owner_id + ", name = " + name +
+                        ", identification_number = " + identification_number + ", address = " + address +
+                        "phone_number = " + phone_number + ".");
 
-                System.out.print("Owner: " );
-                System.out.print("id = " + owner_id);
-                System.out.print(",name = \" " + name + " \"," );
-                System.out.println("identification_number = \"," + identification_number + " \"," );
-                System.out.println("address = \" " + address + " \"" );
-                System.out.println("phone_number = \" " + phone_number + ".");
-                System.out.println("Выведена вся информация! fu");
             }
             result.close();
             statement.close();
