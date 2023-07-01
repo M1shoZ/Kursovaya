@@ -61,17 +61,23 @@ public class Controller {
 //            loginButton.getScene().getWindow().hide();
 
 
-            //Реализация ввода данных в БД
-            String username = loginField.getText();
-            String password = passField.getText();
-            //String role = roleComboBox.getValue();
 
-            // Хэширование пароля
-            String hashedPassword = Hasher.hashPassword(password);
-            System.out.println(hashedPassword);
-            // Save the username and hashed password to the database
-            //DB.registerUser(username, hashedPassword, role);
-            DB.registerUser(username, hashedPassword);
+        });
+
+        loginRegButton.setOnAction(actionEvent -> {
+            loginRegButton.getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("regWindow.fxml"));
+
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
         });
     }
 }

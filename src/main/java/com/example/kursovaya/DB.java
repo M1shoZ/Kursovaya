@@ -12,16 +12,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DB {
-    public static void registerUser(String username, String hashedPassword) { //String role
+    public static void registerUser(String username, String hashedPassword, String role) {
         try {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_2281_kurs",
                     "std_2281_kurs", "12345678");
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO Users (username, password_hash) VALUES (?, ?)"); //"INSERT INTO Users (username, password_hash, role) VALUES (?, ?, ?)"
+                    "INSERT INTO Users (username, password_hash, role) VALUES (?, ?, ?)");
             statement.setString(1, username);
             statement.setString(2, hashedPassword);
-            //statement.setString(3, role);
+            statement.setString(3, role);
 
             statement.executeUpdate();
             statement.close();
