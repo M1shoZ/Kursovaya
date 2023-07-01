@@ -44,7 +44,7 @@ public class Window  {
             String hashedPassword = Hasher.hashPassword(password);
 
             // Save the username and hashed password to the database
-            DB.registerUser(username, hashedPassword, role);
+               //DB.registerUser(username, hashedPassword, role);
         });
 
         // Создание сетки и добавление элементов управления
