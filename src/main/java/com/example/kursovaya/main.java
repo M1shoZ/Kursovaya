@@ -9,6 +9,7 @@ public class main extends Application {
     public void start(Stage primaryStage) {
         Window registrationWindow = new Window();
         registrationWindow.show();
+
     }
 
     public static void main(String[] args) {
