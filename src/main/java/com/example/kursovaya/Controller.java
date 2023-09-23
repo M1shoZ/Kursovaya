@@ -2,6 +2,8 @@ package com.example.kursovaya;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -40,35 +42,37 @@ public class Controller {
     @FXML
     void initialize() {
         loginButton.setOnAction(actionEvent -> {
-            System.out.println("Вы нажали кноку Войти");
-//            openWindow("/resources/com.example.kursovaya/app.fxml");
+            // Авторизация пользователя
+            String loginText = loginField.getText().trim();
+            String passText = passField.getText().trim();
 
-            loginButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("app.fxml"));
+            if (!loginText.equals("") && !passText.equals("")){
+                loginUser(loginText, passText);
 
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
+                // Открытие окна основного приложения после нажатия кнопки Войти
+                loginButton.getScene().getWindow().hide();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("app.fxml"));
+
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Parent root = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
             }
-
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-
-//            loginButton.getScene().getWindow().hide();
-
-
+            else
+                System.out.println("Заполните все поля");
 
         });
-
+        //Открытие окна регистрации после нажатия кнопки Зарегистрироваться
         loginRegButton.setOnAction(actionEvent -> {
             loginRegButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("regWindow.fxml"));
-
             try {
                 loader.load();
             } catch (IOException e) {
@@ -79,6 +83,27 @@ public class Controller {
             stage.setScene(new Scene(root));
             stage.showAndWait();
         });
+    }
+
+    //Авторизация пользователя
+    public static void loginUser(String loginText, String passText) {
+        DB db = new DB();
+        String loginField = loginText;
+        String passField = passText;
+        ResultSet resultSet = db.getUser(loginText, passText);
+
+        int k = 0;
+        while (true){
+            try {
+                if (resultSet.next()) break;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            k++;
+        }
+        if (k >= 1){
+            System.out.println("Success!");
+        }
     }
 }
 

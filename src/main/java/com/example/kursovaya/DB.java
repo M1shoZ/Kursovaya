@@ -11,7 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 public class DB {
+
+    //Регистрация пользователя
     public static void registerUser(String username, String hashedPassword, String role) {
         try {
             Connection connection = DriverManager.getConnection(
@@ -30,5 +33,22 @@ public class DB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    //Получение данных из БД
+    public ResultSet getUser(String loginText, String passText){
+        ResultSet result = null;
+        String select = "SELECT * FROM Users WHERE " + loginText + "=? AND " + passText + "=?";
+        try {
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_2281_kurs",
+                    "std_2281_kurs", "12345678");
+            PreparedStatement statement = connection.prepareStatement(select);
+            statement.setString(1, loginText);
+            statement.setString(2, passText);
+            result = statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
