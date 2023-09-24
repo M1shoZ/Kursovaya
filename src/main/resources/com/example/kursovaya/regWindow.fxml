@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2e3348;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kursovaya.regController">
+    <children>
+        <AnchorPane layoutY="81.0" prefHeight="318.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
+            <children>
+            <ImageView accessibleRole="BUTTON" fitHeight="39.0" fitWidth="35.0" layoutX="13.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+               <image>
+                  <Image url="@up-arrow.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="backButton" layoutX="13.0" layoutY="269.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: red;" text="Button" textFill="TRANSPARENT" visible="false" />
+                <TextField fx:id="nameField" layoutX="91.0" layoutY="85.0" prefHeight="39.0" prefWidth="238.0" promptText="Имя" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 5;">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </TextField>
+                <PasswordField fx:id="passField" layoutX="91.0" layoutY="145.0" prefHeight="39.0" prefWidth="238.0" promptText="Пароль(более 8 символов)" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 5;">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </PasswordField>
+                <Label layoutX="245.0" layoutY="7.0" prefHeight="39.0" prefWidth="208.0" text="Регистрация" textFill="#666666">
+                    <font>
+                        <Font name="Bauhaus 93" size="36.0" />
+                    </font>
+                </Label>
+              <Button fx:id="RegButton" layoutX="254.0" layoutY="243.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="191.0" style="-fx-background-color: #f39c63;" text="Зарегестрироваться" textFill="WHITE">
+                  <font>
+                      <Font name="Bauhaus 93" size="13.0" />
+                  </font>
+              </Button>
+            <RadioButton fx:id="adminCheck" layoutX="295.0" layoutY="199.0" mnemonicParsing="false" text="Администратор" wrapText="true" />
+            <TextField fx:id="adressField" layoutX="403.0" layoutY="85.0" prefHeight="39.0" prefWidth="238.0" promptText="Адрес" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 5;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="phoneField" layoutX="403.0" layoutY="145.0" prefHeight="39.0" prefWidth="238.0" promptText="Номер телефона" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 5;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextField>
+            <Button fx:id="backButton" layoutX="13.0" layoutY="269.0" mnemonicParsing="false" opacity="0.0" prefHeight="35.0" prefWidth="35.0" text="Button" />
+            </children>
+        </AnchorPane>
+        <Label layoutX="165.0" layoutY="14.0" text="Auto Repair Shop" textFill="WHITE">
+            <font>
+                <Font name="Bauhaus 93" size="49.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
