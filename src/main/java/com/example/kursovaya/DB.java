@@ -3,12 +3,20 @@ package com.example.kursovaya;
 import java.sql.*;
 
 public class DB {
+    private static Connection connection = connect();
+    public static Connection connect(){
+        try {
+            connection = DriverManager.getConnection(
+                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_2281_kurs",
+                    "std_2281_kurs", "12345678");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return connection;
+    }
     //Регистрация пользователя
     public static void registration(String name, String address, String phone_number, String password, String role) {
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_2281_kurs",
-                    "std_2281_kurs", "12345678");
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO users (name, address, phone_number, password, role) VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, name);
@@ -16,9 +24,6 @@ public class DB {
             statement.setString(3, phone_number);
             statement.setString(4, String.valueOf(password.hashCode()));
             statement.setString(5, role);
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
             System.out.println("Пользователь успешно зарегистрирован.");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -27,9 +32,6 @@ public class DB {
     //Авторизация пользователя
     public static void loginUser(String name, String password) {
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_2281_kurs",
-                    "std_2281_kurs", "12345678");
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM users WHERE name = ? and password = ?");
             statement.setString(1, name);

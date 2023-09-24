@@ -5,10 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 
 public class regController {
-    public static boolean validation = false;
     @FXML
     private Button RegButton;
 
@@ -58,5 +56,4 @@ public class regController {
             start.swapScene("signIn.fxml", backButton);
         });
     }
-
 }

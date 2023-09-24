@@ -26,8 +26,7 @@ public class signInController {
             String password = passField.getText().trim();
             if (!name.equals("") && !password.equals("")){
                 DB.loginUser(name, password);
-                // Открытие окна основного приложения после нажатия кнопки Войти
-                // при верных данных
+                // Открытие окна основного приложения после нажатия кнопки Войти при верных данных
                 if (validation){
                     start.swapScene("app.fxml", loginButton);
                 }
@@ -38,7 +37,7 @@ public class signInController {
 
         //Открытие окна регистрации после нажатия кнопки Зарегистрироваться
         loginRegButton.setOnAction(actionEvent -> {
-            start.swapScene("regWindow.fxml", loginButton);
+            start.swapScene("regWindow.fxml", loginRegButton);
         });
     }
 }
