@@ -11,27 +11,23 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class start extends Application {
+    public static Stage stage;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage st) throws Exception{
+        stage = st;
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("signIn.fxml")));
-        primaryStage.setTitle("Auto Repair Shop");
-        primaryStage.setScene(new Scene(root, 700, 400));
-        primaryStage.show();
+        stage.setTitle("Auto Repair Shop");
+        stage.setScene(new Scene(root, 700, 400));
+        stage.show();
     }
-    public static void swapScene(String fileName, Button button){
-        button.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(start.class.getResource(fileName));
+    public static void swapScene(String fileName){
         try {
-            loader.load();
+            Parent screen = FXMLLoader.load(Objects.requireNonNull(start.class.getResource(fileName)));
+            stage.setScene(new Scene(screen));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
     }
     public static void main(String[] args) {
         launch(args);

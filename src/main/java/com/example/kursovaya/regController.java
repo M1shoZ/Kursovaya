@@ -48,14 +48,14 @@ public class regController {
             && !address.equals("") && !phone_number.equals("")){
                 DB.registration(name, address, phone_number, password, role);
                 // Открытие окна приложение при нажатии на кнопку Зарегестрироваться
-                start.swapScene("app.fxml", RegButton);
+                start.swapScene("app.fxml");
             }
             else
                 System.out.println("Введите данные!");
         });
         //Кнопка Назад
         backButton.setOnAction(actionEvent -> {
-            start.swapScene("signIn.fxml", backButton);
+            start.swapScene("signIn.fxml");
         });
     }
 

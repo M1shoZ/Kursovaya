@@ -29,7 +29,7 @@ public class signInController {
                 // Открытие окна основного приложения после нажатия кнопки Войти
                 // при верных данных
                 if (validation){
-                    start.swapScene("app.fxml", loginButton);
+                    start.swapScene("app.fxml");
                 }
                 else
                     System.out.println("Произошла ошибка!");
@@ -38,7 +38,7 @@ public class signInController {
 
         //Открытие окна регистрации после нажатия кнопки Зарегистрироваться
         loginRegButton.setOnAction(actionEvent -> {
-            start.swapScene("regWindow.fxml", loginButton);
+            start.swapScene("regWindow.fxml");
         });
     }
 }
