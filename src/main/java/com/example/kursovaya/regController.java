@@ -1,26 +1,14 @@
 package com.example.kursovaya;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.image.ImageView;
 
 public class regController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
+    public static boolean validation = false;
     @FXML
     private Button RegButton;
 
@@ -28,43 +16,46 @@ public class regController {
     private RadioButton adminCheck;
 
     @FXML
-    private TextField loginRegField;
+    private TextField adressField;
 
     @FXML
-    private PasswordField passRegField;
+    private Button backButton;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private PasswordField passField;
+
+    @FXML
+    private TextField phoneField;
 
     @FXML
     void initialize() {
         RegButton.setOnAction(actionEvent -> {
             //Реализация ввода данных в БД
-            String username = loginRegField.getText().trim();
-            String password = passRegField.getText().trim();
+            String name = nameField.getText().trim();
+            String password = passField.getText().trim();
+            String address = adressField.getText().trim();
+            String phone_number = phoneField.getText().trim();
             String role = "";
             if (adminCheck.isSelected())
                 role = "Администратор";
             else
                 role = "Пользователь";
-
-            // Хэширование пароля
-            String hashedPassword = Hasher.hashPassword(password);
-            System.out.println(hashedPassword);
-            DB.registerUser(username, hashedPassword, role);
-
-            // Открытие окна приложение при нажатии на кнопку Зарегестрироваться
-            RegButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("app.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
+            //Передача данных в метод класса BD
+            if (!name.equals("") && password.length() >=8
+            && !address.equals("") && !phone_number.equals("")){
+                DB.registration(name, address, phone_number, password, role);
+                // Открытие окна приложение при нажатии на кнопку Зарегестрироваться
+                start.swapScene("app.fxml", RegButton);
             }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-
-
+            else
+                System.out.println("Введите данные!");
+        });
+        //Кнопка Назад
+        backButton.setOnAction(actionEvent -> {
+            start.swapScene("signIn.fxml", backButton);
         });
     }
 

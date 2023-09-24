@@ -1,35 +1,45 @@
 package com.example.kursovaya;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+import java.sql.*;
 
 public class DB {
-
     //Регистрация пользователя
-    public static void registerUser(String username, String hashedPassword, String role) {
+    public static void registration(String name, String address, String phone_number, String password, String role) {
         try {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_2281_kurs",
                     "std_2281_kurs", "12345678");
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO Users (username, password_hash, role) VALUES (?, ?, ?)");
-            statement.setString(1, username);
-            statement.setString(2, hashedPassword);
-            statement.setString(3, role);
-
+                    "INSERT INTO users (name, address, phone_number, password, role) VALUES (?, ?, ?, ?, ?)");
+            statement.setString(1, name);
+            statement.setString(2, address);
+            statement.setString(3, phone_number);
+            statement.setString(4, String.valueOf(password.hashCode()));
+            statement.setString(5, role);
             statement.executeUpdate();
             statement.close();
             connection.close();
             System.out.println("Пользователь успешно зарегистрирован.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    //Авторизация пользователя
+    public static void loginUser(String name, String password) {
+        try {
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_2281_kurs",
+                    "std_2281_kurs", "12345678");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM users WHERE name = ? and password = ?");
+            statement.setString(1, name);
+            statement.setString(2, String.valueOf(password.hashCode()));
+            ResultSet res = statement.executeQuery();
+            if (res.next()){
+                System.out.println(res.getString("id"));
+                signInController.validation = true;
+                System.out.println("Пользователь авторизован!");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
