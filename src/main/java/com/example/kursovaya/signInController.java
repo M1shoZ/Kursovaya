@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 public class signInController {
-    public static boolean validation = false;
+    protected static boolean validation = false;
     @FXML
     private Button loginButton;
 
@@ -20,26 +20,41 @@ public class signInController {
 
     @FXML
     void initialize() {
+        // Авторизация пользователя
         loginButton.setOnAction(actionEvent -> {
-            // Авторизация пользователя
-            String name = loginField.getText().trim();
-            String password = passField.getText().trim();
-            if (!name.equals("") && !password.equals("")){
-                DB.loginUser(name, password);
-                // Открытие окна основного приложения после нажатия кнопки Войти при верных данных
-                if (validation){
-                    start.swapScene("app.fxml");
-                }
-                else
-                    System.out.println("Произошла ошибка!");
-            }
+            signInUSer();
         });
-
         //Открытие окна регистрации после нажатия кнопки Зарегистрироваться
         loginRegButton.setOnAction(actionEvent -> {
             start.swapScene("regWindow.fxml");
         });
     }
+
+    private void signInUSer() {
+        validation = false; // Ставим false чтобы при выходе из аккаунта, валидация проходила заново.
+        String name = loginField.getText();
+        String password = passField.getText();
+        if (!name.equals("") && !password.equals("")){
+            DB.loginUser(name, password);
+            String role = DB.user.getRole();
+            // Открытие окна основного приложения после нажатия кнопки Войти при верных данных
+            if (validation){
+                if (role.equals("Владелец авто")){
+                    System.out.println("всщщщ, это юзер");
+                    start.swapScene("ownerApp.fxml");
+                }else if(role.equals("Сотрудник")){
+                    System.out.println("This is employee");
+                    start.swapScene("staffApp.fxml");
+                }else{
+                    System.out.println("This is boss!");
+                    start.swapScene("adminApp.fxml");
+                }
+            }
+            else
+                System.out.println("Произошла ошибка!");
+        }
+    }
+
 }
 
 

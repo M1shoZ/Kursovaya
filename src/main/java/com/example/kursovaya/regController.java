@@ -11,9 +11,6 @@ public class regController {
     private Button RegButton;
 
     @FXML
-    private RadioButton adminCheck;
-
-    @FXML
     private TextField adressField;
 
     @FXML
@@ -28,32 +25,34 @@ public class regController {
     @FXML
     private TextField phoneField;
 
+
     @FXML
     void initialize() {
+        // Регистрация нового пользователя
         RegButton.setOnAction(actionEvent -> {
-            //Реализация ввода данных в БД
-            String name = nameField.getText().trim();
-            String password = passField.getText().trim();
-            String address = adressField.getText().trim();
-            String phone_number = phoneField.getText().trim();
-            String role = "";
-            if (adminCheck.isSelected())
-                role = "Администратор";
-            else
-                role = "Пользователь";
-            //Передача данных в метод класса BD
-            if (!name.equals("") && password.length() >=8
-            && !address.equals("") && !phone_number.equals("")){
-                DB.registration(name, address, phone_number, password, role);
-                // Открытие окна приложение при нажатии на кнопку Зарегестрироваться
-                start.swapScene("app.fxml");
-            }
-            else
-                System.out.println("Введите данные!");
+            signUpNewUser();
         });
         //Кнопка Назад
         backButton.setOnAction(actionEvent -> {
             start.swapScene("signIn.fxml");
         });
+    }
+
+    private void signUpNewUser() {
+        //Реализация ввода данных в БД
+        String name = nameField.getText();
+        String password = passField.getText();
+        String address = adressField.getText();
+        String phone = phoneField.getText();
+        //Проверка корректности данных
+        if (!name.equals("") && password.length() >=8
+                && !address.equals("") && phone.length() == 11){
+            //Передача данных в метод класса BD
+            DB.registration(name, address, phone, password);
+            // Открытие окна приложение при нажатии на кнопку Зарегестрироваться
+            start.swapScene("signIn.fxml");
+        }
+        else
+            System.out.println("Введите корректные данные!");
     }
 }
