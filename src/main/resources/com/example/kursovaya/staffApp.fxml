@@ -2,6 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,34 +12,57 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2e3348;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kursovaya.staffAppControler">
     <children>
-        <AnchorPane layoutY="130.0" prefHeight="470.0" prefWidth="800.0" style="-fx-background-color: #fafafa;">
+        <AnchorPane layoutY="88.0" prefHeight="512.0" prefWidth="800.0" style="-fx-background-color: #fafafa;">
             <children>
-                <Label layoutX="241.0" layoutY="38.0" prefHeight="42.0" prefWidth="318.0" text="Сотрудник" textFill="#666666">
+                <TableView fx:id="employeeCarTable" layoutX="86.0" layoutY="77.0" prefHeight="114.0" prefWidth="659.0">
+                    <columns>
+                        <TableColumn fx:id="licensePlateColumn" prefWidth="74.4000244140625" text="Номер" />
+                        <TableColumn fx:id="brandColumn" prefWidth="71.20001220703125" text="Марка" />
+                        <TableColumn fx:id="modelColumn" prefWidth="54.4000244140625" text="Модель" />
+                        <TableColumn fx:id="colorColumn" prefWidth="76.79998779296875" text="Цвет" />
+                        <TableColumn fx:id="mileageColumn" prefWidth="90.4000244140625" text="Пробег" />
+                  <TableColumn fx:id="ownerColumn" prefWidth="131.20001220703125" text="Владелец" />
+                  <TableColumn fx:id="installedPartColumn" prefWidth="160.7999267578125" text="Установленная деталь" />
+                    </columns>
+                </TableView>
+                <Label layoutX="339.0" layoutY="14.0" prefHeight="42.0" prefWidth="122.0" text="Ремонт" textFill="#666666">
                     <font>
                         <Font name="Bauhaus 93" size="36.0" />
                     </font>
                 </Label>
-                <Label layoutX="233.0" layoutY="138.0" prefHeight="42.0" prefWidth="318.0" text="Добро Пожаловать" textFill="#666666">
+                <Label layoutX="169.0" layoutY="217.0" prefHeight="42.0" prefWidth="162.0" text="Добавить деталь">
                     <font>
-                        <Font name="Bauhaus 93" size="36.0" />
+                        <Font name="Bauhaus 93" size="20.0" />
                     </font>
                 </Label>
-            <ImageView accessibleRole="BUTTON" fitHeight="39.0" fitWidth="35.0" layoutX="14.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                <Button fx:id="exitButton" layoutX="14.0" layoutY="472.0" mnemonicParsing="false" opacity="0.0" prefHeight="35.0" prefWidth="35.0" text="Button" />
+                <Button fx:id="addPartButton" layoutX="150.0" layoutY="332.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="201.0" style="-fx-background-color: #f39c63;" text="Добавить" textFill="WHITE">
+                    <font>
+                        <Font name="Bauhaus 93" size="15.0" />
+                    </font>
+                </Button>
+                <TextField fx:id="serialNumberField" layoutX="125.0" layoutY="267.0" prefHeight="35.0" prefWidth="250.0" promptText="id Детали">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </TextField>
+                <TableView fx:id="partsTable" layoutX="486.0" layoutY="204.0" prefHeight="238.0" prefWidth="258.0">
+                    <columns>
+                        <TableColumn fx:id="serialNumberColumn" prefWidth="120.79998779296875" text="Серийны номер" />
+                        <TableColumn fx:id="partColumn" prefWidth="136.80002441406248" text="Деталь" />
+                    </columns>
+                </TableView>
+            <ImageView accessibleRole="BUTTON" fitHeight="39.0" fitWidth="35.0" layoutX="14.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                <image>
                   <Image url="@exit.png" />
                </image>
             </ImageView>
-            <Button fx:id="exitButton" layoutX="14.0" layoutY="421.0" mnemonicParsing="false" opacity="0.0" prefHeight="35.0" prefWidth="35.0" text="Button" />
+            <Button fx:id="exitButton" layoutX="14.0" layoutY="463.0" mnemonicParsing="false" opacity="0.0" prefHeight="35.0" prefWidth="35.0" text="Button" />
             </children>
         </AnchorPane>
-        <Button fx:id="profileButton" layoutX="41.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: #2E3348;" text="Мой профиль" textFill="#f39c63">
+        <Label layoutX="214.0" layoutY="14.0" prefHeight="58.0" prefWidth="372.0" text="Auto Repair Shop" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="18.0" />
-            </font>
-        </Button>
-        <Label layoutX="247.0" layoutY="14.0" prefHeight="47.0" prefWidth="306.0" text="Auto Repair Shop" textFill="WHITE">
-            <font>
-                <Font name="Bauhaus 93" size="40.0" />
+                <Font name="Bauhaus 93" size="49.0" />
             </font>
         </Label>
     </children>

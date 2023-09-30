@@ -7,16 +7,55 @@ public class Car {
     private String color;
     private int mileage;
     private int ownerId;
+    private String owner;
+    private int employeeId;
+    private String part;
     Owner carOwner;
 
 
-    public Car(String licencePlate, String brand, String model, String color, int mileage, int ownerId) {
+    public Car(String licencePlate, String brand, String model, int ownerId, String color, int mileage) {
         this.licencePlate = licencePlate;
         this.brand = brand;
         this.model = model;
         this.color = color;
         this.mileage = mileage;
         this.ownerId = ownerId;
+    }
+
+
+
+    public Car(String licencePlate, String brand, String model, String owner, int employeeId) {
+        this.licencePlate = licencePlate;
+        this.brand = brand;
+        this.model = model;
+        this.owner = owner;
+        this.employeeId = employeeId;
+    }
+
+
+
+    public Car(String licencePlate, String brand, String model, String owner, String color, int mileage, String part) {
+        this.licencePlate = licencePlate;
+        this.brand = brand;
+        this.model = model;
+        this.owner = owner;
+        this.color = color;
+        this.mileage = mileage;
+        this.part = part;
+    }
+    public String getPart() {
+        return part;
+    }   public Owner getCarOwner() {
+        return carOwner;
+    }
+    public int getEmployeeId() {
+        return employeeId;
+    }
+    public String getOwner() {
+        return owner;
+    }
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getLicencePlate() {

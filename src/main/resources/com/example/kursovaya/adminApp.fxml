@@ -24,7 +24,7 @@
             <Button fx:id="exitButton" layoutX="14.0" layoutY="421.0" mnemonicParsing="false" opacity="0.0" prefHeight="35.0" prefWidth="35.0" text="Button" />
             </children>
         </AnchorPane>
-        <Button fx:id="profileButton" layoutX="41.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: #2E3348;" text="Мой профиль" textFill="#f39c63">
+        <Button fx:id="addEmployeeButton" layoutX="41.0" layoutY="76.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="227.0" style="-fx-background-color: #2E3348;" text="Добавить сотрудника" textFill="#f39c63">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
@@ -34,7 +34,12 @@
                 <Font name="Bauhaus 93" size="40.0" />
             </font>
         </Label>
-      <Button fx:id="repairButton" layoutX="247.0" layoutY="76.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="187.0" style="-fx-background-color: #2E3348;" text="Записи на ремонт" textFill="#f39c63">
+      <Button fx:id="archiveButton" layoutX="443.0" layoutY="84.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="187.0" style="-fx-background-color: #2E3348;" text="Архив ремонта" textFill="#f39c63">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="repairButton" layoutX="281.0" layoutY="84.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="187.0" style="-fx-background-color: #2E3348;" text="Записи на ремонт" textFill="#f39c63">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
